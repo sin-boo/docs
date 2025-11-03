@@ -1,16 +1,16 @@
-# Mintlify Starter Kit
+# Neutral Art Documentation
 
-Use the starter kit to get your docs deployed and ready to customize.
+Welcome to the official documentation for **Neutral Art** — a custom build of Krita designed to help artists create better art, faster with AI assistance.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+This documentation covers:
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+- Getting started with Neutral Art
+- Setting up AI API access (Google Studio/Gemini, OpenAI, OpenRouter)
+- Using AI feedback to improve your artwork
+- Building your own custom version
+- Future features and roadmap
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+**[View the full documentation](https://github.com/sin-boo/docs)**
 
 ## Development
 
