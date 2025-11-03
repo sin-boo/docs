@@ -97,7 +97,7 @@
     "primary": {
       "type": "button",
       "label": "Download Neutral Art",
-      "href": "https://github.com/sin-boo"
+      "href": "https://huggingface.co/sinBoo1/NeuralArt/tree/main"
     }
   },
   "contextual": {
