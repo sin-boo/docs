@@ -1,0 +1,184 @@
+---
+title: "Voice Integration"
+description: "Talk to your AI assistant while you paint"
+icon: "microphone"
+---
+
+## Overview
+
+Voice integration will let you interact with your AI assistant completely hands-free, so you can keep both hands on your drawing tablet while getting feedback and advice.
+
+<Note>
+  **Status:** Planned for v0.3-0.5 (next 3-6 months)
+  
+  The voice technology has already been tested in other projects and works well — it just needs to be integrated into Neutral Art!
+</Note>
+
+## Planned Features
+
+### Text-to-Speech (AI Reads to You)
+
+The AI will read its responses aloud so you don't have to stop painting to read:
+
+- 🎤 **Natural Voice** — Clear, easy-to-understand speech
+- 🎚️ **Volume Control** — Adjust to your preference
+- ⏸️ **Pause/Resume** — Control playback as needed
+- 🔇 **Mute Option** — Toggle voice on/off quickly
+
+<Tip>
+  Perfect for getting feedback while you're in the zone — no need to look away from your canvas!
+</Tip>
+
+### Voice Input (You Talk to AI)
+
+Speak naturally to your AI assistant:
+
+- 🗣️ **Conversational Input** — Just talk like you would to a person
+- 🎙️ **Push-to-Talk** — Hold a key to speak (won't pick up background noise)
+- 📝 **Automatic Transcription** — Your words appear as text in the chat
+- 🌐 **Multiple Languages** — Support for various languages planned
+
+### Hands-Free Workflow
+
+The complete hands-free experience:
+
+- ⌨️ **Keyboard Shortcuts** — Quick toggle for voice input
+- 🎨 **Paint While Talking** — Keep working while asking questions
+- 🔄 **Continuous Conversation** — Natural back-and-forth dialogue
+- 🚫 **Background Noise Filtering** — Focuses on your voice
+
+## Use Cases
+
+### Getting Real-Time Feedback
+
+```
+You: "Hey, I'm working on the lighting for this portrait. 
+     Does the rim light on the left feel too strong?"
+
+AI: "The rim light intensity looks good, but consider softening 
+    the edge where it meets the shadow. You might also want to 
+    add a subtle fill light on the shadow side to maintain 
+    facial structure."
+
+You: "How do I soften that edge in Krita?"
+
+AI: "Use a soft round brush with low opacity, set to blend mode. 
+    Gently brush along the edge to create a gradual transition..."
+```
+
+### Learning While You Work
+
+```
+You: "Remind me, what's the rule for color temperature in shadows?"
+
+AI: "Shadows are typically cooler than lit areas. If your light 
+    source is warm (like sunlight), your shadows should lean 
+    toward cool colors like blues and purples. This creates 
+    visual depth and atmospheric perspective."
+
+You: "Got it, thanks!"
+```
+
+### Quick Questions
+
+```
+You: "What's the shortcut for merging layers?"
+
+AI: "Control+E merges the current layer with the layer below it."
+
+You: "Perfect!"
+```
+
+## Technical Details
+
+### How It Will Work
+
+<Steps>
+<Step title="Activate voice input">
+  Press and hold your configured hotkey (or use a toolbar button)
+</Step>
+
+<Step title="Speak your question">
+  Talk naturally — the AI transcribes your speech to text
+  
+  <Check>
+  You'll see your words appear in the chat as you speak
+  </Check>
+</Step>
+
+<Step title="AI responds">
+  The response appears in chat AND is read aloud automatically
+</Step>
+
+<Step title="Continue painting">
+  Listen to the advice while your hands stay on your tablet
+</Step>
+</Steps>
+
+### Privacy & Processing
+
+- 🔒 **Your Choice** — Voice processing happens through your AI provider (Google, OpenAI, etc.)
+- 🎙️ **Local First** — Audio isn't stored unless you choose to save conversations
+- ⏱️ **Real-Time** — Speech-to-text happens quickly for natural conversation
+- 🔐 **Secure** — Same security as text-based chat
+
+<Warning>
+  Using voice features will consume additional tokens/credits from your AI provider, as voice-to-text processing is separate from text generation.
+</Warning>
+
+## Configuration Options
+
+When voice integration launches, you'll be able to customize:
+
+### Voice Settings
+- **Voice selection** — Choose from available voice options
+- **Speech speed** — Slower or faster reading
+- **Volume level** — Adjust independently from system volume
+- **Auto-read** — Toggle automatic reading of responses
+
+### Input Settings
+- **Activation method** — Push-to-talk vs toggle
+- **Hotkey binding** — Choose your preferred key
+- **Noise threshold** — Sensitivity for voice detection
+- **Language** — Set your preferred language for transcription
+
+### Workflow Settings
+- **Visual feedback** — Show when listening/transcribing
+- **Confirmation beep** — Audio cue when voice is active
+- **Auto-pause** — Stop playback when you start talking
+
+## Why This Matters for Artists
+
+Traditional workflows interrupt your creative flow:
+
+❌ **Without Voice:**
+1. Notice something wrong
+2. Put down stylus
+3. Type question
+4. Read response
+5. Pick up stylus
+6. Try to remember what AI said
+7. Continue painting
+
+✅ **With Voice:**
+1. Notice something wrong
+2. Ask while painting
+3. Keep painting while listening
+4. Apply advice immediately
+
+<Tip>
+  Voice integration keeps you in the creative flow state, which is when your best work happens!
+</Tip>
+
+## Feedback Welcome
+
+Since this feature is still in development, we want to hear from you:
+
+- What voice features are most important to you?
+- How would you use voice in your workflow?
+- What concerns do you have about voice integration?
+
+<Card title="Share Your Thoughts" icon="comment" href="https://github.com/sin-boo/docs">
+  Visit our GitHub to share feedback
+</Card>
+
