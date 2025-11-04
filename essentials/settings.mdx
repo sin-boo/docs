@@ -1,182 +1,175 @@
 ---
-title: 'Global Settings'
-description: 'Mintlify gives you complete control over the look and feel of your documentation using the docs.json file'
+title: 'AI Settings & Configuration'
+description: 'Configure your AI providers, API keys, and preferences for Neutral Art'
 icon: 'gear'
 ---
 
-Every Mintlify site needs a `docs.json` file with the core configuration settings. Learn more about the [properties](#properties) below.
+Neutral Art's AI features require proper configuration to work. This guide covers all the settings you can adjust to customize your AI assistant experience.
 
-## Properties
+## AI Provider Settings
 
-<ResponseField name="name" type="string" required>
-Name of your project. Used for the global title.
+### Google Studio / Gemini
 
-Example: `mintlify`
+<ResponseField name="api_key" type="string" required>
+Your Google Studio API key. Get one from [Google AI Studio](https://makersuite.google.com/app/apikey).
 
+<Note>This is currently the only fully supported provider in Neutral Art.</Note>
 </ResponseField>
 
-<ResponseField name="navigation" type="Navigation[]" required>
-  An array of groups with all the pages within that group
-  <Expandable title="Navigation">
-    <ResponseField name="group" type="string">
-    The name of the group.
-
-    Example: `Settings`
-
-    </ResponseField>
-    <ResponseField name="pages" type="string[]">
-    The relative paths to the markdown files that will serve as pages.
-
-    Example: `["customization", "page"]`
-
-    </ResponseField>
-
-  </Expandable>
+<ResponseField name="model" type="string" default="gemini-pro">
+Which Gemini model to use for feedback. Available options:
+- `gemini-pro` — Standard model (recommended)
+- `gemini-pro-vision` — Vision-capable model
 </ResponseField>
 
-<ResponseField name="logo" type="string or object">
-  Path to logo image or object with path to "light" and "dark" mode logo images
-  <Expandable title="Logo">
-    <ResponseField name="light" type="string">
-      Path to the logo in light mode
-    </ResponseField>
-    <ResponseField name="dark" type="string">
-      Path to the logo in dark mode
-    </ResponseField>
-    <ResponseField name="href" type="string" default="/">
-      Where clicking on the logo links you to
-    </ResponseField>
-  </Expandable>
+<ResponseField name="temperature" type="number" default="0.7">
+Controls randomness in AI responses. Lower values (0.1-0.3) for consistent, focused feedback. Higher values (0.7-1.0) for more creative, varied responses.
 </ResponseField>
 
-<ResponseField name="favicon" type="string">
-  Path to the favicon image
+## Interface Settings
+
+<ResponseField name="panel_position" type="string" default="top">
+Where the AI assistant panel appears in Neutral Art:
+- `top` — At the top of the workspace (current default)
+- `right` — As a right-side docker panel
+- `floating` — As a floating window
 </ResponseField>
 
-<ResponseField name="colors" type="Colors">
-  Hex color codes for your global theme
-  <Expandable title="Colors">
-    <ResponseField name="primary" type="string" required>
-      The primary color. Used for most often for highlighted content, section
-      headers, accents, in light mode
-    </ResponseField>
-    <ResponseField name="light" type="string">
-      The primary color for dark mode. Used for most often for highlighted
-      content, section headers, accents, in dark mode
-    </ResponseField>
-    <ResponseField name="dark" type="string">
-      The primary color for important buttons
-    </ResponseField>
-    <ResponseField name="background" type="object">
-      The color of the background in both light and dark mode
-      <Expandable title="Object">
-        <ResponseField name="light" type="string" required>
-          The hex color code of the background in light mode
-        </ResponseField>
-        <ResponseField name="dark" type="string" required>
-          The hex color code of the background in dark mode
-        </ResponseField>
-      </Expandable>
-    </ResponseField>
-  </Expandable>
+<ResponseField name="auto_hide" type="boolean" default="false">
+Automatically hide the AI panel when not in use to save workspace space.
 </ResponseField>
 
-<ResponseField name="topbarLinks" type="TopbarLink[]">
-  Array of `name`s and `url`s of links you want to include in the topbar
-  <Expandable title="TopbarLink">
-    <ResponseField name="name" type="string">
-    The name of the button.
+<ResponseField name="hide_api_key" type="boolean" default="true">
+Hide your API key in the interface when screen sharing or recording.
 
-    Example: `Contact us`
-    </ResponseField>
-    <ResponseField name="url" type="string">
-    The url once you click on the button. Example: `https://mintlify.com/docs`
-    </ResponseField>
-
-  </Expandable>
+<Warning>Always enable this for privacy when sharing your screen!</Warning>
 </ResponseField>
 
-<ResponseField name="topbarCtaButton" type="Call to Action">
-  <Expandable title="Topbar Call to Action">
-    <ResponseField name="type" type={'"link" or "github"'} default="link">
-    Link shows a button. GitHub shows the repo information at the url provided including the number of GitHub stars.
-    </ResponseField>
-    <ResponseField name="url" type="string">
-    If `link`: What the button links to.
-    
-    If `github`: Link to the repository to load GitHub information from.
-    </ResponseField>
-    <ResponseField name="name" type="string">
-    Text inside the button. Only required if `type` is a `link`.
-    </ResponseField>
+## Feedback Preferences
 
-  </Expandable>
+<ResponseField name="default_feedback_type" type="string" default="general">
+What type of feedback the AI provides by default:
+- `general` — Overall composition and technique
+- `technical` — Detailed technical analysis
+- `constructive` — Focus on improvement areas
+- `encouraging` — Motivational feedback
 </ResponseField>
 
-<ResponseField name="versions" type="string[]">
-  Array of version names. Only use this if you want to show different versions
-  of docs with a dropdown in the navigation bar.
+<ResponseField name="include_examples" type="boolean" default="true">
+Whether AI suggestions include specific examples and demonstrations.
 </ResponseField>
 
-<ResponseField name="anchors" type="Anchor[]">
-  An array of the anchors, includes the `icon`, `color`, and `url`.
-  <Expandable title="Anchor">
-    <ResponseField name="icon" type="string">
-    The [Font Awesome](https://fontawesome.com/search?q=heart) icon used to feature the anchor.
-
-    Example: `comments`
-    </ResponseField>
-    <ResponseField name="name" type="string">
-    The name of the anchor label.
-
-    Example: `Community`
-    </ResponseField>
-    <ResponseField name="url" type="string">
-      The start of the URL that marks what pages go in the anchor. Generally, this is the name of the folder you put your pages in.
-    </ResponseField>
-    <ResponseField name="color" type="string">
-      The hex color of the anchor icon background. Can also be a gradient if you pass an object with the properties `from` and `to` that are each a hex color.
-    </ResponseField>
-    <ResponseField name="version" type="string">
-      Used if you want to hide an anchor until the correct docs version is selected.
-    </ResponseField>
-    <ResponseField name="isDefaultHidden" type="boolean" default="false">
-      Pass `true` if you want to hide the anchor until you directly link someone to docs inside it.
-    </ResponseField>
-    <ResponseField name="iconType" default="duotone" type="string">
-      One of: "brands", "duotone", "light", "sharp-solid", "solid", or "thin"
-    </ResponseField>
-
-  </Expandable>
+<ResponseField name="feedback_depth" type="string" default="balanced">
+How detailed the AI feedback should be:
+- `brief` — Quick, high-level feedback
+- `balanced` — Standard detailed feedback (recommended)
+- `comprehensive` — Very detailed analysis
 </ResponseField>
 
-<ResponseField name="topAnchor" type="Object">
-  Override the default configurations for the top-most anchor.
-  <Expandable title="Object">
-    <ResponseField name="name" default="Documentation" type="string">
-      The name of the top-most anchor
-    </ResponseField>
-    <ResponseField name="icon" default="book-open" type="string">
-      Font Awesome icon.
-    </ResponseField>
-    <ResponseField name="iconType" default="duotone" type="string">
-      One of: "brands", "duotone", "light", "sharp-solid", "solid", or "thin"
-    </ResponseField>
-  </Expandable>
+## Canvas & Layer Settings
+
+<ResponseField name="default_send_mode" type="string" default="layer">
+What gets sent to AI by default when requesting feedback:
+- `canvas` — Entire canvas
+- `layer` — Currently selected layer
+- `selection` — Selected area only
 </ResponseField>
 
-<ResponseField name="tabs" type="Tabs[]">
-  An array of navigational tabs.
-  <Expandable title="Tabs">
-    <ResponseField name="name" type="string">
-      The name of the tab label.
-    </ResponseField>
-    <ResponseField name="url" type="string">
-      The start of the URL that marks what pages go in the tab. Generally, this
-      is the name of the folder you put your pages in.
-    </ResponseField>
-  </Expandable>
+<ResponseField name="max_image_size" type="string" default="1024px">
+Maximum dimension for images sent to AI. Larger images provide better analysis but use more API quota.
+- `512px` — Fast, low detail
+- `1024px` — Balanced (recommended)
+- `2048px` — High detail, slower
 </ResponseField>
+
+<ResponseField name="auto_resize" type="boolean" default="true">
+Automatically resize images to fit within the maximum size limit.
+</ResponseField>
+
+## Privacy & Security
+
+<ResponseField name="local_storage_only" type="boolean" default="true">
+Store API keys and settings only locally on your device. Never send to external servers.
+
+<Check>Neutral Art never transmits your API keys to our servers — all AI communication happens directly between your computer and your chosen AI provider.</Check>
+</ResponseField>
+
+<ResponseField name="clear_on_exit" type="boolean" default="false">
+Clear API keys from memory when Neutral Art closes. More secure but requires re-entering keys each session.
+</ResponseField>
+
+<ResponseField name="anonymize_data" type="boolean" default="true">
+Remove any personal information from feedback requests when possible.
+</ResponseField>
+
+## Performance Settings
+
+<ResponseField name="cache_responses" type="boolean" default="true">
+Cache AI responses for similar requests to reduce API usage and improve speed.
+</ResponseField>
+
+<ResponseField name="max_concurrent_requests" type="number" default="1">
+Maximum number of simultaneous AI requests. Increase for faster processing but higher API usage.
+</ResponseField>
+
+<ResponseField name="timeout_seconds" type="number" default="30">
+How long to wait for AI responses before timing out (in seconds).
+</ResponseField>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="AI not responding">
+    - Check your internet connection
+    - Verify your API key is valid and has quota remaining
+    - Try switching to a different AI model
+    - Check the Neutral Art debug logs
+  </Accordion>
+
+  <Accordion title="Canvas sending not working">
+    - Ensure you have an active layer selected
+    - Check that your image isn't too large (reduce max_image_size if needed)
+    - Try sending a smaller selection instead of the full canvas
+  </Accordion>
+
+  <Accordion title="Poor quality feedback">
+    - Try a different AI model or temperature setting
+    - Send higher resolution images (increase max_image_size)
+    - Be more specific in your questions to the AI
+  </Accordion>
+
+  <Accordion title="API quota exceeded">
+    - Check your Google Studio usage dashboard
+    - Consider upgrading your API plan
+    - Reduce request frequency or image sizes
+    - Enable response caching to reduce duplicate requests
+  </Accordion>
+</AccordionGroup>
+
+## Advanced Configuration
+
+<ResponseField name="custom_endpoints" type="object">
+Override default API endpoints for advanced users. Only modify if you know what you're doing.
+
+<Expandable title="Custom Endpoints">
+  <ResponseField name="google_studio_base" type="string">
+  Custom Google Studio API base URL (rarely needed)
+  </ResponseField>
+  <ResponseField name="timeout_override" type="number">
+  Custom timeout in milliseconds
+  </ResponseField>
+</Expandable>
+</ResponseField>
+
+<ResponseField name="debug_mode" type="boolean" default="false">
+Enable detailed logging for troubleshooting. Creates debug files in your Neutral Art data folder.
+
+<Warning>Debug mode may impact performance and create large log files. Disable when not needed.</Warning>
+</ResponseField>
+
+<Tip>
+Most users won't need to change the advanced settings. The default configuration works well for most workflows. Only modify these if you're experiencing specific issues or have advanced requirements.
+</Tip>
 
 <ResponseField name="api" type="API">
   Configuration for API settings. Learn more about API pages at [API Components](/api-playground/demo).

@@ -1,93 +1,231 @@
 ---
-title: "Development"
-description: "Preview changes locally to update your docs"
+title: "Build Your Own Version"
+description: "Learn how to build custom versions of Neutral Art using the Krita Builder"
+icon: "hammer"
 ---
 
-<Info>
-  **Prerequisites**:
+## Overview
 
-  - Node.js version 19 or higher
-  - A docs repository with a `docs.json` file
-</Info>
+Neutral Art is built on top of Krita using the Krita Builder tool. This allows you to create your own custom versions with additional features, modifications, or integrations.
 
-Follow these steps to install and run Mintlify on your operating system.
+<Note>
+  **Important:** Building Neutral Art requires technical knowledge and access to the Krita source code. This is for advanced users who want to contribute to development or create custom builds.
+</Note>
+
+## Prerequisites
+
+Before you start building Neutral Art, ensure you have:
+
+- ✅ **Krita Source Code** — Access to the official Krita repository
+- ✅ **Krita Builder** — The build tool for creating custom Krita versions
+- ✅ **Development Environment** — Compiler tools, Qt libraries, and dependencies
+- ✅ **Git** — For managing source code
+- ✅ **CMake** — Build system used by Krita
+
+## Getting Started
 
 <Steps>
-  <Step title="Install the Mintlify CLI">
+  <Step title="Clone Krita Source">
+    Get the official Krita source code:
+
     ```bash
-    npm i -g mint
+    git clone https://invent.kde.org/graphics/krita.git
+    cd krita
     ```
   </Step>
-  <Step title="Preview locally">
-    Navigate to your docs directory where your `docs.json` file is located, and run the following command:
+
+  <Step title="Set up Krita Builder">
+    Download and configure the Krita Builder tool:
 
     ```bash
-    mint dev
-    ```
+    # Clone the Krita Builder
+    git clone https://invent.kde.org/sdk/krita-builder.git
+    cd krita-builder
 
-    A local preview of your documentation will be available at `http://localhost:3000`.
+    # Install dependencies (varies by OS)
+    # Follow the setup instructions for your platform
+    ```
+  </Step>
+
+  <Step title="Apply Neutral Art Modifications">
+    This is where you'd apply the Neutral Art-specific changes to the Krita source code. These include:
+
+    - AI assistant integration
+    - API key management
+    - Visual feedback system
+    - Canvas/layer sending functionality
+
+    <Warning>
+      The specific modifications are part of the Neutral Art development process and require coordination with the development team.
+    </Warning>
   </Step>
 </Steps>
 
-## Custom ports
+## Building Process
 
-By default, Mintlify uses port 3000. You can customize the port Mintlify runs on by using the `--port` flag. For example, to run Mintlify on port 3333, use this command:
+Once you have the source code and modifications:
 
-```bash
-mint dev --port 3333
-```
+<Steps>
+  <Step title="Configure Build">
+    Use Krita Builder to configure your build:
 
-If you attempt to run Mintlify on a port that's already in use, it will use the next available port:
+    ```bash
+    # Run the build configuration
+    python3 krita-builder.py --configure
+    ```
+  </Step>
 
-```md
-Port 3000 is already in use. Trying 3001 instead.
-```
+  <Step title="Build Neutral Art">
+    Compile the modified Krita version:
 
-## Mintlify versions
+    ```bash
+    # Build the application
+    python3 krita-builder.py --build
+    ```
 
-Please note that each CLI release is associated with a specific version of Mintlify. If your local preview does not align with the production version, please update the CLI:
+    This may take significant time depending on your system.
+  </Step>
 
-```bash
-npm mint update
-```
+  <Step title="Test Your Build">
+    Launch and test your custom Neutral Art build:
 
-## Validating links
+    ```bash
+    # Run the built application
+    python3 krita-builder.py --run
+    ```
+  </Step>
+</Steps>
 
-The CLI can assist with validating links in your documentation. To identify any broken links, use the following command:
+## Platform-Specific Instructions
 
-```bash
-mint broken-links
-```
+### Windows
 
-## Deployment
+<AccordionGroup>
+  <Accordion title="Windows Dependencies">
+    Install required tools:
+    - Visual Studio 2022 (with C++ build tools)
+    - CMake 3.16+
+    - Python 3.8+
+    - Qt6 development libraries
+    - KDE Frameworks development files
+  </Accordion>
 
-If the deployment is successful, you should see the following:
+  <Accordion title="Windows Build Command">
+    ```bash
+    # Use PowerShell or Command Prompt
+    python krita-builder.py --configure --platform windows
+    python krita-builder.py --build
+    ```
+  </Accordion>
+</AccordionGroup>
 
-<Frame>
-  <img
-    src="/images/checks-passed.png"
-    alt="Screenshot of a deployment confirmation message that says All checks have passed."
-    style={{ borderRadius:"0.5rem" }}
-  />
-</Frame>
+### macOS
 
-## Code formatting
+<AccordionGroup>
+  <Accordion title="macOS Dependencies">
+    Install required tools:
+    - Xcode Command Line Tools
+    - Homebrew
+    - Qt6 via Homebrew
+    - KDE Frameworks via Homebrew
+    - CMake via Homebrew
+  </Accordion>
 
-We suggest using extensions on your IDE to recognize and format MDX. If you're a VSCode user, consider the [MDX VSCode extension](https://marketplace.visualstudio.com/items?itemName=unifiedjs.vscode-mdx) for syntax highlighting, and [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for code formatting.
+  <Accordion title="macOS Build Command">
+    ```bash
+    # Use Terminal
+    python3 krita-builder.py --configure --platform macos
+    python3 krita-builder.py --build
+    ```
+  </Accordion>
+</AccordionGroup>
+
+### Linux
+
+<AccordionGroup>
+  <Accordion title="Linux Dependencies">
+    Install required packages:
+
+    ```bash
+    # Ubuntu/Debian
+    sudo apt update
+    sudo apt install build-essential cmake qt6-base-dev libkf5*-dev python3-dev
+
+    # Or for other distros, follow KDE/Krita documentation
+    ```
+  </Accordion>
+
+  <Accordion title="Linux Build Command">
+    ```bash
+    python3 krita-builder.py --configure --platform linux
+    python3 krita-builder.py --build
+    ```
+  </Accordion>
+</AccordionGroup>
+
+## Adding Custom Features
+
+If you want to add your own features to Neutral Art:
+
+<Steps>
+  <Step title="Understand the Architecture">
+    Study how the AI assistant integrates with Krita's plugin system and UI.
+  </Step>
+
+  <Step title="Plan Your Modifications">
+    Document what changes you want to make and how they'll integrate.
+  </Step>
+
+  <Step title="Implement Changes">
+    Modify the appropriate source files in the Krita codebase.
+  </Step>
+
+  <Step title="Test Thoroughly">
+    Test your changes across different scenarios and platforms.
+  </Step>
+
+  <Step title="Contribute Back">
+    Consider sharing your improvements with the Neutral Art community!
+  </Step>
+</Steps>
 
 ## Troubleshooting
 
 <AccordionGroup>
-  <Accordion title='Error: Could not load the "sharp" module using the darwin-arm64 runtime'>
-    This may be due to an outdated version of node. Try the following:
-
-    1. Remove the currently-installed version of the CLI: `npm remove -g mint`
-    2. Upgrade to Node v19 or higher.
-    3. Reinstall the CLI: `npm i -g mint`
+  <Accordion title="Build fails with dependency errors">
+    Ensure all required development libraries are installed. Check the Krita Builder documentation for your platform's specific requirements.
   </Accordion>
-  <Accordion title="Issue: Encountering an unknown error">
-    Solution: Go to the root of your device and delete the `~/.mintlify` folder. Then run `mint dev` again.
+
+  <Accordion title="Application crashes on startup">
+    Check that all Qt and KDE dependencies are compatible versions. Try a clean build.
+  </Accordion>
+
+  <Accordion title="AI features don't work">
+    Verify that the Neutral Art modifications were applied correctly. Check API key configuration and network connectivity.
+  </Accordion>
+
+  <Accordion title="Performance issues">
+    Building on slower machines may take hours. Consider using more CPU cores or cloud build services if available.
   </Accordion>
 </AccordionGroup>
 
-Curious about what changed in the latest CLI version? Check out the [CLI changelog](https://www.npmjs.com/package/mintlify?activeTab=versions).
+## Getting Help
+
+<AccordionGroup>
+  <Accordion title="Need help with building?">
+    - Check the official [Krita Builder documentation](https://invent.kde.org/sdk/krita-builder)
+    - Join our [Discord community](https://discord.gg/NfA7kQvGGb) for support
+    - Review the [Krita development wiki](https://userbase.kde.org/Krita/Developer_Zone)
+  </Accordion>
+
+  <Accordion title="Want to contribute?">
+    - Fork the repository on GitHub
+    - Create a feature branch
+    - Submit a pull request with your changes
+    - Join the development discussion on Discord
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  **Disclaimer:** Building custom versions of Krita/Neutral Art is an advanced process. The development team provides this information for experienced developers. If you're new to C++/Qt development, consider starting with simpler contributions or waiting for official releases.
+</Note>
