@@ -1,0 +1,151 @@
+---
+title: "Technical Details"
+description: "Advanced technical information about Neutral Art's AI integration"
+icon: "cogs"
+---
+
+# Technical Architecture
+
+This page provides technical details for developers and advanced users interested in how Neutral Art integrates with Krita and AI services.
+
+## Plugin Architecture
+
+Neutral Art is built as a Krita docker plugin that extends the Krita interface with AI capabilities.
+
+### Core Components
+
+- **Main Plugin** — `kritaneuralartchat.dll` (Windows)
+- **Storage System** — JSON-based conversation persistence
+- **Secure Store** — Encrypted API key management
+- **Audio Engine** — WASAPI-based voice recording with Whisper transcription
+
+### File Locations
+
+```
+Krita Installation/
+├── bin/
+│   ├── kritaneuralartchat.dll          # Main plugin
+│   └── whisper/                        # Voice transcription
+│       ├── cpu/whisper.dll            # CPU backend
+│       └── cuda/whisper.dll           # GPU backend
+└── share/krita/models/whisper/         # AI models
+    └── ggml-medium.bin               # Default Whisper model
+
+User Data/
+└── krita/neuralartchat/
+    ├── conversations.json            # Chat history
+    └── api_keys.enc                 # Encrypted credentials
+```
+
+## AI Provider Integration
+
+### Google Studio/Gemini
+- **API Endpoint** — `https://generativelanguage.googleapis.com/v1/models/{model}:generateContent`
+- **Authentication** — API key in query parameter
+- **Image Support** — Base64-encoded PNG uploads
+- **Streaming** — Single-request responses (no streaming)
+
+### OpenAI
+- **API Endpoint** — `https://api.openai.com/v1/chat/completions`
+- **Authentication** — Bearer token in Authorization header
+- **Conversation Context** — Full message history maintained
+- **Image Support** — Multi-modal content arrays
+- **Streaming** — Token-by-token responses (future enhancement)
+
+### OpenRouter
+- **Status** — Planned for v0.2 with Patreon integration
+- **Purpose** — Unified access to multiple AI models
+- **Distribution** — API keys provided by subscription service
+
+## Voice Processing Pipeline
+
+### Audio Capture
+- **API** — Windows Multimedia (waveInXXX functions)
+- **Format** — 16kHz PCM, mono, 16-bit
+- **Buffering** — Circular buffer system (4 × 250ms chunks)
+- **Devices** — Auto-detection of available microphones
+
+### Whisper Integration
+- **Model** — ggml-medium.bin (default)
+- **Backends** — CPU, CUDA (NVIDIA), DirectML (AMD)
+- **Detection** — Automatic GPU capability detection
+- **Processing** — Asynchronous with progress feedback
+
+### Transcription Flow
+```
+Record Button → WASAPI Capture → WAV File → Whisper DLL → Text → UI Injection
+```
+
+## Data Management
+
+### Conversation Storage
+- **Format** — JSON with message history
+- **Location** — `%APPDATA%\krita\neuralartchat\conversations.json`
+- **Structure** — Per-provider conversation threads
+- **Persistence** — Survives application restarts
+
+### API Key Security
+- **Encryption** — Windows Data Protection API (DPAPI)
+- **Storage** — Per-provider isolated key storage
+- **Access** — Automatic decryption on provider switch
+
+### Image Processing
+- **Formats** — All Krita-supported formats (converted to PNG)
+- **Resizing** — Automatic scaling to 2048px max dimension
+- **Encoding** — Base64 for API transmission
+- **Layers** — Support for AI-visible layer filtering
+
+## System Integration
+
+### Krita Canvas Access
+- **API** — `KisImage::projection()` for full canvas
+- **Layers** — `KisNode::aiVisible()` for selective capture
+- **Real-time** — Direct access to current canvas state
+
+### Docker Positioning
+- **Auto-placement** — Automatically docks above Layers panel
+- **Persistence** — Remembers position across sessions
+- **Fallback** — Graceful handling when Layers panel not found
+
+### GPU Detection
+- **NVIDIA** — `cudaGetDeviceCount()` via nvcuda.dll
+- **AMD** — DirectML.dll availability check
+- **Fallback** — CPU processing always available
+
+## Performance Considerations
+
+### Memory Usage
+- **Base** — ~50MB for core functionality
+- **Whisper Models** — ~1.5GB for ggml-medium.bin
+- **Conversations** — Variable based on chat history length
+
+### Network Usage
+- **API Calls** — Text-only: ~1KB per message
+- **Images** — Base64 encoding: ~33% size increase
+- **Streaming** — Future OpenAI integration will reduce latency
+
+### CPU/GPU Usage
+- **CPU Mode** — ~2-3x slower than GPU transcription
+- **NVIDIA GPU** — CUDA acceleration for fastest processing
+- **AMD GPU** — Limited DirectML support (CPU fallback)
+
+## Development Notes
+
+### Build Requirements
+- **Qt** — 5.15+ with Multimedia support
+- **KF5** — KDE Frameworks integration
+- **Compiler** — MinGW-w64 with Win32 threading
+- **Dependencies** — FFTW, LCMS2, OpenEXR, etc.
+
+### Plugin Loading
+- **Registration** — Automatic via Krita's plugin system
+- **Dependencies** — All DLLs must be in same directory
+- **Initialization** — Lazy loading of Whisper components
+
+### Error Handling
+- **Network** — Timeout and retry logic
+- **Audio** — Device availability validation
+- **GPU** — Graceful fallback to CPU processing
+- **Storage** — Corruption-resistant JSON handling
+
+This technical documentation provides the foundation for understanding how Neutral Art integrates advanced AI capabilities into the Krita digital art workflow.

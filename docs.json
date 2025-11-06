@@ -24,7 +24,8 @@
             "group": "AI Features",
             "pages": [
               "essentials/ai-assistant",
-              "essentials/getting-feedback"
+              "essentials/getting-feedback",
+              "essentials/technical-details"
             ]
           },
           {

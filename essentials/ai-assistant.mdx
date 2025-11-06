@@ -14,93 +14,149 @@ The AI assistant panel is located at the **top of your workspace**, alongside ot
 
 ## AI Assistant Interface
 
-The AI assistant features a simple, clean interface with:
+The AI assistant features a comprehensive interface designed for digital artists:
 
-- **API Key input field** — Where you enter your Google Studio/Gemini API key
-- **Chat interface** — For conversing with the AI
-- **Send canvas/layer button** — Upload your artwork for visual feedback
-- **Hide button** — Protect your API key from others when sharing your screen
+### Setup Panel
+- **API Provider Selection** — Choose from Google Studio, OpenAI, or OpenRouter
+- **API Key Management** — Secure storage with per-provider keys
+- **Model Browser** — Select from available AI models for your provider
+- **Save Key Button** — Securely store your API credentials
+
+### Chat Panel
+- **Conversation History** — Access past conversations with different models
+- **Chat Interface** — Rich text chat with AI responses
+- **Voice Input** — Record audio and get automatic transcription
+- **Image Integration** — Send your canvas or selected layers for visual analysis
+- **Resizable Panels** — Adjust chat history and input area sizes
 
 <Note>
-  **Coming soon:** Personality and role type selectors to customize how the AI responds to you!
+  All API keys are encrypted and stored locally. They never leave your computer or go to our servers.
 </Note>
 
-<Warning>
-  Currently, only **Google Studio/Gemini** is fully functional in this release. OpenAI and OpenRouter support will be added in future updates.
-</Warning>
-
-## Setting Your API Key
+## Setting Up AI Providers
 
 <Steps>
-<Step title="Get your Google Studio API key">
-  Visit [Google AI Studio](https://makersuite.google.com/app/apikey) and create a free API key.
+<Step title="Choose your AI provider">
+  Select from the dropdown: **Google Studio**, **OpenAI**, or **OpenRouter**.
+
+  - **Google Studio** — Free tier available, good for general art feedback
+  - **OpenAI** — GPT-4 access, best for detailed technical analysis
+  - **OpenRouter** — Access multiple models through one API (coming with Patreon)
 </Step>
 
-<Step title="Enter your API key">
-  In the AI assistant panel, paste your API key into the input field and click save.
-  
+<Step title="Get your API key">
+  **For Google Studio:**
+  Visit [Google AI Studio](https://makersuite.google.com/app/apikey) and create a free API key.
+
+  **For OpenAI:**
+  Visit [OpenAI Platform](https://platform.openai.com/api-keys) and create an API key.
+
+  **For OpenRouter:**
+  API keys provided through Patreon subscription (coming soon).
+</Step>
+
+<Step title="Enter and save your API key">
+  Paste your API key into the input field and click **"Save Key"**.
+
   <Check>
-  You should see a confirmation that your API key is connected.
+  The AI assistant will automatically detect your provider and fetch available models.
   </Check>
 </Step>
 
-<Step title="Start chatting">
-  You're ready to go! No restart required — start asking questions or requesting feedback immediately.
+<Step title="Select a model and start chatting">
+  Choose from the available models for your provider and click **"Chat"** to begin.
+
+  <Tip>
+  Your API key is encrypted and stored securely on your computer only.
+  </Tip>
 </Step>
 </Steps>
 
-## Personality and Role Types (Coming Soon)
+## Conversation Management
 
-The next update will let you customize how the AI responds:
+Keep track of your creative discussions with persistent conversation history:
 
-### Planned Personality Types
-
-Choose a personality that matches your learning style:
-- **Encouraging** — Supportive feedback with positive reinforcement
-- **Critical** — Direct, honest critique focused on improvement
-- **Balanced** — Mix of encouragement and constructive criticism
-- **Technical** — Detailed analysis of technique and process
-
-### Planned Role Types
-
-Set what kind of feedback you want:
-- **General Art Critic** — Overall composition, color, and technique feedback
-- **Technical Advisor** — Specific guidance on Krita tools and workflows
-- **Color Theory Expert** — Focus on color harmony, values, and palette choices
-- **Composition Guide** — Analysis of layout, balance, and visual flow
+- **Conversation Selector** — Switch between past conversations
+- **New Conversation** — Start fresh discussions with different models
+- **Delete Conversations** — Clean up old conversations you no longer need
+- **Automatic Titles** — Conversations are automatically titled from your first message
 
 <Tip>
-  These customization options are coming in version 0.2!
+  Each conversation remembers which AI model and provider you were using, so you can continue discussions seamlessly.
 </Tip>
 
-## Chat Features
+## Voice Input & Transcription
 
-### Current Features
+Talk to your AI assistant hands-free using advanced speech-to-text technology:
 
-Right now, you can:
-- ✅ Send your canvas or selected layers for visual feedback
-- ✅ Have ongoing conversations with the AI
-- ✅ Ask questions about Krita features and techniques
-- ✅ Get detailed critique on composition, color, and technique
-- ✅ Request explanations of art concepts
+### How It Works
+- **Record Button** — Click and hold to record your voice
+- **Automatic Transcription** — Your speech is converted to text using Whisper AI
+- **Review & Edit** — Check the transcribed text before sending
+- **GPU Acceleration** — Uses NVIDIA/AMD GPUs when available for faster processing
 
-### Coming Soon
+### Voice Settings
+- **Backend Selection** — Choose CPU, NVIDIA GPU, or AMD GPU processing
+- **Microphone Selection** — Pick your preferred audio input device
+- **Status Display** — See recording and processing status in real-time
 
-Future updates will add:
-- 🔄 **Chat history** — Save and review past conversations
-- 🔄 **Personality & role selection** — Customize AI response style
-- 🔄 **Creative commands** — Control Krita through natural language ("lower opacity to 50%")
+<Tip>
+  Voice input works best in quiet environments. The AI will automatically detect when you're done speaking.
+</Tip>
+
+## Image Integration
+
+Get visual feedback by sending your artwork directly to the AI:
+
+### Canvas Options
+- **Whole Image** — Send your entire canvas as it appears
+- **AI Visible Layers** — Send only layers marked as AI-visible
+- **Automatic Resizing** — Large images are optimized for API limits
+- **Multiple Formats** — Works with all Krita-supported image types
+
+### When to Send Images
+- **Composition Feedback** — Get advice on layout and balance
+- **Color Analysis** — Understand color harmony and values
+- **Technique Critique** — Receive detailed feedback on your methods
+- **Style Assessment** — Discuss artistic choices and approaches
+
+## Technical Requirements
+
+### System Requirements
+- **Operating System** — Windows 10 or later
+- **RAM** — 4GB minimum, 8GB recommended for voice transcription
+- **Storage** — 500MB free space for models and conversation data
+
+### GPU Acceleration (Optional)
+- **NVIDIA GPUs** — CUDA-compatible cards for faster voice transcription
+- **AMD GPUs** — DirectML-compatible cards (limited support)
+- **CPU Fallback** — Works on any modern CPU if no GPU available
+
+### Network Requirements
+- **Internet Connection** — Required for AI API communication
+- **API Access** — Valid API keys for your chosen provider
+- **No VPN Restrictions** — Some providers may block VPN connections
 
 <Warning>
-  **Cost Notice:** Using the AI assistant will consume tokens from your Google Studio API quota. Be mindful of usage if you're on a limited plan.
+  **API Costs:** Each provider has different pricing. Google Studio offers a free tier, while OpenAI charges per token used. Monitor your usage to avoid unexpected charges.
 </Warning>
 
 ## Privacy & Security
 
-Your API key is stored locally in Neutral Art and never sent to our servers. All communication happens directly between your installation and your chosen AI provider (Google Studio, OpenAI, or OpenRouter).
+Your data security is our priority:
+
+### Local Storage Only
+- **API Keys** — Encrypted using Windows Data Protection API
+- **Conversations** — Stored locally in JSON format
+- **No External Servers** — We never see your API keys or conversations
+
+### Direct API Communication
+- **Peer-to-Peer** — Communication goes directly from your computer to AI providers
+- **No Intermediaries** — Your data never passes through our servers
+- **Provider Policies** — Each AI provider has its own data retention policies
 
 <Tip>
-  Use the **hide button** in the AI panel when screen sharing or recording to keep your API key private!
+  Switch between providers anytime — your API keys and conversations are stored separately for each provider.
 </Tip>
 
 ## Troubleshooting
@@ -108,17 +164,40 @@ Your API key is stored locally in Neutral Art and never sent to our servers. All
 <AccordionGroup>
 <Accordion title="AI not responding">
   - Check that your API key is valid and active
-  - Verify you have quota remaining with Google Studio
-  - Try disconnecting and reconnecting your API key
+  - Verify you have quota/tokens remaining with your provider
+  - Try refreshing the model list after entering your API key
+  - Check your internet connection
 </Accordion>
 
 <Accordion title="Can't find the AI panel">
   - Check your top toolbar for the AI icon
   - Try resetting your workspace layout: **Settings → Dockers → Reset Workspace**
+  - The panel should appear automatically above the Layers docker
 </Accordion>
 
-<Accordion title="OpenAI or OpenRouter not working">
-  Currently only Google Studio/Gemini is fully functional. Support for OpenAI and OpenRouter is coming in future updates.
+<Accordion title="Voice transcription not working">
+  - Ensure you have a microphone connected and enabled
+  - Check that no other applications are using your microphone
+  - Try selecting a different microphone from the voice settings
+  - GPU acceleration requires compatible NVIDIA or AMD graphics cards
+</Accordion>
+
+<Accordion title="Images not sending">
+  - Make sure you have an active canvas open in Krita
+  - Check that your canvas isn't empty
+  - Large images are automatically resized; very large canvases may take time to process
+</Accordion>
+
+<Accordion title="OpenAI models not loading">
+  - Verify your OpenAI API key is correct
+  - Check that your OpenAI account has credits remaining
+  - Some OpenAI models require paid access (GPT-4, DALL-E, etc.)
+</Accordion>
+
+<Accordion title="Conversations not saving">
+  - Conversations are stored locally in your user data folder
+  - Check that you have write permissions to your user directory
+  - Try restarting Krita if conversations aren't appearing
 </Accordion>
 </AccordionGroup>
 
