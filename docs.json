@@ -23,9 +23,9 @@
           {
             "group": "AI Features",
             "pages": [
+              "essentials/settings",
               "essentials/ai-assistant",
-              "essentials/getting-feedback",
-              "essentials/technical-details"
+              "essentials/getting-feedback"
             ]
           },
           {
@@ -33,6 +33,7 @@
             "pages": [
               "timeline/roadmap",
               "timeline/voice-integration",
+              "timeline/creative-commands",
               "timeline/creator-marketplace"
             ]
           }
@@ -73,15 +74,15 @@
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {
