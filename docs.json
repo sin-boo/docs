@@ -17,14 +17,12 @@
             "group": "Getting started",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "quickstart"
             ]
           },
           {
             "group": "AI Features",
             "pages": [
-              "essentials/settings",
               "essentials/ai-assistant",
               "essentials/getting-feedback"
             ]
@@ -34,7 +32,6 @@
             "pages": [
               "timeline/roadmap",
               "timeline/voice-integration",
-              "timeline/creative-commands",
               "timeline/creator-marketplace"
             ]
           }
